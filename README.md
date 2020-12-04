@@ -3,8 +3,10 @@
 It is a parser lib that can help your routing rules more readable and understandable for users. 
 
 ## example
-<https://github.com/v2rayA/v2rayA/wiki/RoutingA>
-<>
+
+[parser_test.go](parser_test.go)
+
+[v2rayA wiki](https://github.com/v2rayA/v2rayA/wiki/RoutingA)
 
 ## detail
 
