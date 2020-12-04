@@ -136,11 +136,11 @@ func postHandleMsg(msg string, str []rune, i int) string {
 
 //LR(1)文法
 func generateSyntaxTree(program string) (S symbol, err error) {
-	var logsBuf strings.Builder
+	//var logsBuf strings.Builder
 	defer func() {
-		if err != nil {
-			err = fmt.Errorf("%v\n%v", err, logsBuf.String())
-		}
+		//if err != nil {
+		//	err = fmt.Errorf("%v\n%v", err, logsBuf.String())
+		//}
 	}()
 	var stackR, stackS = make(symbols, 1), make([]int, 1)
 	stackR[0] = symbol{sym: 0}
@@ -161,18 +161,18 @@ out:
 		msg := table[sTop][string(sym)]
 		//特殊处理
 		msg = postHandleMsg(msg, str, i)
-		logsBuf.WriteString(fmt.Sprintln("[status]", "StackRune:", stackR.String(), "StackState:", stackS, "Str[i]:", val, "Sym:", string(sym), "Msg:", msg))
+		//logsBuf.WriteString(fmt.Sprintln("[status]", "StackRune:", stackR.String(), "StackState:", stackS, "Str[i]:", val, "Sym:", string(sym), "Msg:", msg))
 		switch {
 		case strings.HasPrefix(msg, "s"):
 			state, _ := strconv.Atoi(msg[1:])
 			stackS = append(stackS, state)
 			stackR = append(stackR, symbol{sym: sym, val: val})
-			logsBuf.WriteString(fmt.Sprintln("[info]", "Shift:", val, "Push state:", state))
+			//logsBuf.WriteString(fmt.Sprintln("[info]", "Shift:", val, "Push state:", state))
 			i++
 		case strings.HasPrefix(msg, "r"):
 			state, _ := strconv.Atoi(msg[1:])
 			production := productions[state]
-			logsBuf.WriteString(fmt.Sprintln("[info]", string(production.left), "<-", production.right))
+			//logsBuf.WriteString(fmt.Sprintln("[info]", string(production.left), "<-", production.right))
 			stackS = stackS[:len(stackS)-len(production.right)]
 			gt := table[stackS[len(stackS)-1]][string(production.left)]
 			var newState int
@@ -182,9 +182,9 @@ out:
 				return
 			}
 			stackS = append(stackS, newState)
-			if !matchRegex(stackR.Runes(), production.right) {
-				logsBuf.WriteString(fmt.Sprintln("[warning]", "TrimSuffix:", stackR.String(), "not match regex:", production.right))
-			}
+			//if !matchRegex(stackR.Runes(), production.right) {
+			//	logsBuf.WriteString(fmt.Sprintln("[warning]", "TrimSuffix:", stackR.String(), "not match regex:", production.right))
+			//}
 			//形成语法树
 			reducedSyms := stackR[len(stackR)-len(production.right):]
 			stackR = stackR[:len(stackR)-len(production.right)]
@@ -203,7 +203,7 @@ out:
 			if end == -1 {
 				end = 0x3f3f3f3f
 			}
-			err = fmt.Errorf("[error] position: %v unexpected character %c <...%v>", i, str[i], string(str[i:min(len(str)-1, i+end)]))
+			err = fmt.Errorf("[error] position: %v unexpected character \"%c\"\n%v\n%v", i, str[i], string(str[max(0, i-30):min(len(str)-1, i+end)]), strings.Repeat(" ", min(i-30, 30))+strings.Repeat("^", max(min(len(str)-1, i+end)-i, 1)))
 			return
 		default:
 			err = errors.New("[error] " + msg)
@@ -218,4 +218,11 @@ func min(x, y int) int {
 		return x
 	}
 	return y
+}
+
+func max(x, y int) int {
+	if x < y {
+		return y
+	}
+	return x
 }
