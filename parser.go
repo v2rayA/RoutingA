@@ -5,7 +5,7 @@
 // license that can be found in the LICENSE file.
 package routingA
 
-func Parse(program string) (rules []interface{}, err error) {
+func Parse(program string) (rules RoutingA, err error) {
 	S, err := generateSyntaxTree(program)
 	if err != nil {
 		return
