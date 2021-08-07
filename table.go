@@ -1,8 +1,6 @@
 // routingA:
 // https://github.com/v2rayA/routingA
-// Copyright 2020 By mzz2017. All rights reserved.
-// Use of this source code is governed by MIT
-// license that can be found in the LICENSE file.
+// Use of this source code is governed by MIT license that can be found in the LICENSE file.
 package routingA
 
 import (
