@@ -9,7 +9,7 @@ func TestParse(t *testing.T) {
 	program := `
 # 自定义outbound
 outbound: httpout = http(address: 127.0.0.1, port: 8080, user: 'my-username', pass: 'my-password')
-outbound: socksout = socks(address: 127.0.0.1, port: 10800, user: "my-username", pass: "my-password")
+outbound: socks_out = socks(address: 127.0.0.1, port: 10800, user: "my-username", pass: "my-password")
 
 # 设置默认outbound，不填则为proxy
 default: httpout

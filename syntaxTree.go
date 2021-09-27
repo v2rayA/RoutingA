@@ -197,11 +197,20 @@ out:
 			S = stackR[len(stackR)-1]
 			break out
 		case msg == "":
-			end := strings.Index(string(str[i:]), "\n")
-			if end == -1 {
-				end = 0x3f3f3f3f
+			mostLeft := 0
+			if j := strings.LastIndex(string(str[:i]), "\n"); j >= 0 {
+				mostLeft = j + 1
 			}
-			err = fmt.Errorf("[error] position: %v unexpected character \"%c\"\n%v\n%v", i, str[i], string(str[max(0, i-30):min(len(str)-1, i+end)]), strings.Repeat(" ", min(i-30, 30))+strings.Repeat("^", max(min(len(str)-1, i+end)-i, 1)))
+			mostRight := len(str)
+			if j := strings.Index(string(str[i+1:]), "\n"); j >= 0 {
+				mostRight = i + j + 1
+			}
+			eMsgs := []string{
+				fmt.Sprintf(`position: %v unexpected character "%c":`, i, str[i]),
+				fmt.Sprintf("%v", string(str[mostLeft:mostRight])),
+				fmt.Sprintf("%v", strings.Repeat(" ", i-mostLeft)+strings.Repeat("^", mostRight-i)),
+			}
+			err = fmt.Errorf("[error] %v", strings.Join(eMsgs, "\n"))
 			return
 		default:
 			err = errors.New("[error] " + msg)
