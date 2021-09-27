@@ -17,7 +17,7 @@ default: httpout
 # 缺省情况下有proxy、block、direct三个outbound tag
 
 # 域名规则
-domain(domain: v2raya.mzz.pub) -> socksout
+domain(domain: v2raya.mzz.pub) -> socks_out
 domain(full: dns.google) -> proxy
 domain(contains: facebook) -> proxy
 # IP规则

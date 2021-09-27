@@ -33,6 +33,9 @@ func toSym(r rune) rune {
 	}
 	switch {
 	case unicode.IsPunct(r):
+		if r == '_' {
+			return 'k'
+		}
 		if _, ok := o[r]; ok {
 			return r
 		} else if _, ok := reserve[r]; ok {
