@@ -1,4 +1,4 @@
-# routingA
+# RoutingA
 
 It is a parser lib that can help your routing rules more readable and understandable for users. 
 
@@ -10,7 +10,7 @@ It is a parser lib that can help your routing rules more readable and understand
 
 ## detail
 
-[design and implementation details](https://github.com/v2rayA/v2rayA/wiki/%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3#routinga)
+[design and implementation details](https://github.com/v2rayA/v2rayA/wiki/%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3#RoutingA)
 
 ## LICENSE
 

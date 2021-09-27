@@ -1,4 +1,4 @@
-module github.com/v2rayA/routingA
+module github.com/v2rayA/RoutingA
 
 go 1.15
 

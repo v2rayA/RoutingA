@@ -1,4 +1,4 @@
-package routingA
+package RoutingA
 
 import (
 	"log"
