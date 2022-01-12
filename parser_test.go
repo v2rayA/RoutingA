@@ -28,6 +28,7 @@ ip(192.168.0.0/16) -> direct
 domain(contains: google, domain: www.twitter.com, domain: mzz.pub) -> proxy
 # 包含多个IP
 ip(1.2.3.4, 9.9.9.9, 223.5.5.5) -> direct
+ip(91.108.4.0/22,91.108.8.0/22,91.108.56.0/22,95.161.64.0/20,149.154.160.0/22,149.154.164.0/22,"2001:67c:4e8::/48")->proxy
 
 # 扩展文件规则
 extern(ip, geoip, private) -> direct

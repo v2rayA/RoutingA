@@ -126,7 +126,7 @@ func postHandleMsg(msg string, str []rune, i int) string {
 			case ':':
 				msg = "r11"
 				break loop
-			case ',', ')':
+			case '\'', '"', ',', ')':
 				msg = "s44"
 				break loop
 			}
